@@ -59,6 +59,7 @@ class A2D2Dataset(Custom3DDataset):
                  pipeline=None,
                  classes=None,
                  modality=None,
+                 prefix = '/opt/ml/input/data/train/',
                  box_type_3d='LiDAR',
                  filter_empty_gt=True,
                  test_mode=False,
@@ -74,6 +75,7 @@ class A2D2Dataset(Custom3DDataset):
             test_mode=test_mode)
 
         self.split = split
+        self.prefix = prefix
         self.root_split = os.path.join(self.data_root, split)
         assert self.modality is not None
         self.pcd_limit_range = pcd_limit_range
@@ -91,7 +93,7 @@ class A2D2Dataset(Custom3DDataset):
         # pts_filename = osp.join(self.root_split, self.pts_prefix,
         #                         f'{idx:06d}.bin')
         
-        pts_filename = self.data_infos[idx]['point_cloud']['velodyne_path']
+        pts_filename = self.prefix + self.data_infos[idx]['point_cloud']['velodyne_path']
 
         return pts_filename
 
@@ -115,7 +117,7 @@ class A2D2Dataset(Custom3DDataset):
         """
         info = self.data_infos[index]
         sample_idx = info['image']['image_idx']
-        img_filename = os.path.join(self.data_root,
+        img_filename = self.prefix + os.path.join(self.data_root,
                                     info['image']['image_path'])
 
         # TODO: consider use torch.Tensor only

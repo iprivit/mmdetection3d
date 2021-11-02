@@ -59,7 +59,7 @@ class A2D2Dataset(Custom3DDataset):
                  pipeline=None,
                  classes=None,
                  modality=None,
-                 prefix = '/opt/ml/input/data/train/',
+                 prefix = '/opt/ml/input/data/train/camera_lidar_semantic_bboxes/',
                  box_type_3d='LiDAR',
                  filter_empty_gt=True,
                  test_mode=False,

@@ -5,7 +5,7 @@ _base_ = [
 
 # dataset settings
 dataset_type = 'A2D2Dataset'
-data_root = '/opt/ml/input/data/train/'
+data_root = '/opt/ml/input/data/training/'
 class_names = ['Car']
 point_cloud_range = [0, -40, -5, 70, 40, 3]
 input_modality = dict(use_lidar=True, use_camera=False)
